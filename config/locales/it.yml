@@ -1,0 +1,7 @@
+it:
+  spree:
+    prices: "Prezzi"
+    show_currency_selector: "Visualizza il Selettore di Valuta"
+    supported_currencies: "Valute Supportate"
+    allow_currency_change: "Permetti il cambio di Valuta"
+    master: Master
