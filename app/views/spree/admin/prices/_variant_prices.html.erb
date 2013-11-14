@@ -1,10 +1,15 @@
-<h5><%= variant.sku %> (<%= variant.is_master? ? Spree.t(:master) : variant.options_text %>)</h5>
-<ul>
+<h5>
+  <%= "#{Spree.t(:variant)}: #{variant.sku}" %>
+  (<%= variant.is_master? ? Spree.t(:master) : variant.options_text %>)
+</h5>
+
 <% supported_currencies.each do |currency| %>
-  <li>
-    <% price = variant.price_in(currency.iso_code) %>
-    <%= text_field_tag("vp[#{variant.id}][#{currency.iso_code}]", (price ? price.display_amount : '')) %>
-    <%= currency.iso_code %>
-  </li>
+  <div>
+    <%= "#{currency.iso_code}: " %>
+    <%= text_field_tag("vp[#{variant.id}][#{currency.iso_code}]",
+                        number_to_currency(variant.price_in(currency.iso_code).amount,
+                                           :unit => '')) %>
+    <%= currency.code %>
+  </div>
+  <br>
 <% end %>
-</ul>
